@@ -1,0 +1,58 @@
+version: '3.9'
+
+services:
+  estradadb:
+    image: postgres
+    restart: on-failure
+    ports:
+      - "45432:5432"
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_TIMEZONE: Asia/Jakarta
+      PGDATA: /data/postgres
+    networks:
+      - estrada
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_DATABASE}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - db:/data/postgres
+
+  estrada-frontend:
+    container_name: estrada_frontend
+    image: estrada-frontend
+    ports:
+      - "40000:3000"
+    networks:
+      - estrada
+
+  estrada-backend:
+    container_name: estrada_backend
+    build: .
+    ports:
+      - "40001:15000"
+    networks:
+      - estrada
+    depends_on:
+      estradadb:
+        condition: service_healthy
+    restart: always
+    environment:
+      DB_HOST: estradadb
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_DATABASE: ${DB_DATABASE}
+      DB_PORT: 5432
+      SERVICE_PORT: ${SERVICE_PORT}
+
+networks:
+  estrada:
+    name: estrada
+    driver: bridge
+
+volumes:
+  db:
