@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  color: rgba(240,241,241,255)
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .icon-arrow {
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  }
+}
