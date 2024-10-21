@@ -69,10 +69,7 @@ const TrafficList: React.FC = () => {
 
     return (
         <>
-            <Header />
             <main className="container">
-                <Menu />
-
                 <div className="container w-full max-w-screen-xl justify-center items-center h-screen pt-8">
                     <div className="flex flex-wrap max-h-41">
                         <div className="w-full h-full md:w-1/4 flex justify-center items-center">

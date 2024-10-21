@@ -53,17 +53,14 @@ const CardList: React.FC = () => {
 
     return (
         <>
-            <Header />
-            <main className="container">
-                <Menu />
-
-                <div className="container w-full max-w-screen-xl justify-center items-center h-screen pt-8">
-                    <div className="flex flex-wrap max-h-41">
-                        <div className="w-full h-full md:w-1/4 flex justify-center items-center">
-                        </div>
-                        <div className="w-full md:w-3/4 mt-8">
-                        </div>
-                    </div>
+            <main className="flex">
+                 <div className="container w-full max-w-screen-xl justify-center items-center h-screen pt-8">
+                    {/*<div className="flex flex-wrap max-h-41">*/}
+                    {/*    <div className="w-full h-full md:w-1/4 flex justify-center items-center">*/}
+                    {/*    </div>*/}
+                    {/*    <div className="w-full md:w-3/4 mt-8">*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                     <div aria-label="content" className="mt-9 grid gap-2.5">
                         <h2 className="text-neutral-800	 text-xl font-bold mb-4">List Detail Traffic</h2>
                         <div className="mb-4">

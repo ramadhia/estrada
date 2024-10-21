@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useCallback, useEffect, useState } from "react";
+import Menu from "@/components/Menu";
+import Header from "@/components/Header";
 import StreamButton from '../../components/StreamButton';
 import LocationSelector from '../../components/LocationSelector';
 
@@ -66,11 +68,12 @@ const StreamPage = () => {
     };
 
     return (
+    <>
         <div className="flex flex-col items-center h-screen bg-gray-100">
             <h1 className="text-3xl font-bold mb-4">Live Stream</h1>
             <LocationSelector
                 onSelect={({lat, long}) => handleCoordinateChange(lat, long)}
-            /
+            />
             {streamUrl ? (
                 <img src={streamUrl} alt="Live Stream" width="640" height="361"/>
             ) : (
@@ -83,6 +86,7 @@ const StreamPage = () => {
 
             />
         </div>
+    </>
     );
 };
 
