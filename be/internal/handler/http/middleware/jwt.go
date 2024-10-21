@@ -18,14 +18,11 @@ const (
 )
 
 type User struct {
-	ID        string   `json:"user_id" binding:"required"`
-	Email     string   `json:"email" binding:"required"`
-	FirstName string   `json:"first_name" binding:"required"`
-	LastName  string   `json:"last_name" binding:"required"`
-	Scope     []string `json:"scope" binding:"required"`
-	Tenant    string   `json:"tenant" binding:"required"`
-	Role      string   `json:"role"`
-	IsClient  bool     `json:"is_client"`
+	ID       string   `json:"user_id" binding:"required"`
+	Email    string   `json:"email" binding:"required"`
+	Scope    []string `json:"scope" binding:"required"`
+	Role     string   `json:"role"`
+	IsClient bool     `json:"is_client"`
 }
 
 func (u User) ToModel(token string) (model.Claim, error) {
@@ -51,6 +48,8 @@ func NewHmacJwtMiddleware(secretKey []byte) gin.HandlerFunc {
 			_ = c.AbortWithError(http.StatusUnauthorized, errors.New("missing bearer token"))
 			return
 		}
+		fmt.Println("masuk sini?")
+
 		jwtObj, err := decodeHmacJwtData(secretKey, *bearer)
 		if err != nil {
 			_ = c.AbortWithError(http.StatusUnauthorized, err)

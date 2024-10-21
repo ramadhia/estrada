@@ -25,7 +25,11 @@ func (h *DefaultHttpServer) setupRouting() {
 
 	router.GET("traffics", h.handlers.traffic.FetchTraffic)
 	router.GET("traffics-cte", h.handlers.traffic.FetchTrafficCTE)
-	router.PUT("traffics", h.handlers.traffic.UpsertTraffic)
-	router.DELETE("traffics/:id", h.handlers.traffic.DeleteTraffic).Use(secureMiddlewares...)
+
+	router.Use(secureMiddlewares...)
+	{
+		router.PUT("traffics", h.handlers.traffic.UpsertTraffic)
+		router.DELETE("traffics/:id", h.handlers.traffic.DeleteTraffic)
+	}
 
 }
