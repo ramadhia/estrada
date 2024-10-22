@@ -26,6 +26,8 @@ class RTSPService:
             self.stream_thread.start()
 
     def stream_generator(self):
+        time_limit = 0  # set limit 5 detik
+        start_time = time.time()
         while self.is_streaming:
             try:
                 with self.lock:  # Lock access to capture
@@ -42,6 +44,13 @@ class RTSPService:
                             break
                     else:
                         time.sleep(1)
+
+                # logic to check the limit, skip when time_limit is 0
+                if time_limit > 0 and (time.time() - start_time > time_limit):
+                    print(f"Waktu streaming sudah mencapai {time_limit} detik, menghentikan stream.")
+                    self.stop()  # force stop when reach the limit
+                    break
+
             except Exception as e:
                 print(f"Error in stream_generator: {e}")
                 break
