@@ -26,7 +26,7 @@ class RTSPService:
             self.stream_thread.start()
 
     def stream_generator(self):
-        time_limit = 0  # set limit 5 detik
+        time_limit = 5  # set limit 5 detik
         start_time = time.time()
         while self.is_streaming:
             try:
