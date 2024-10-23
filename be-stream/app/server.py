@@ -25,8 +25,8 @@ def streams():
 
 @router.post("/start-stream")
 def start_stream(lat: float, long: float):
-    poi = POIModel(latitude=lat, longitude=long)
-    stream_usecase.video_feed(poi)
+    # poi = POIModel(latitude=lat, longitude=long)
+    # stream_usecase.video_feed(poi)
     return {"message": "Stream started"}
 
 
